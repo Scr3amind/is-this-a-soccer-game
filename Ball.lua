@@ -11,7 +11,7 @@ function Ball:init(x, y, size)
 end
 
 function Ball:render()
-    love.graphics.setColor(255/255, 255/255 , 0/255, 1)
+    love.graphics.setColor(255/255, 255/255 , 255/255, 1)
     love.graphics.circle('fill',self.circle.body:getX(),self.circle.body:getY(),self.circle.shape:getRadius())
     love.graphics.setColor(255/255, 255/255 , 255/255, 1)
 end

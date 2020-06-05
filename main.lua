@@ -9,9 +9,13 @@ Class = require 'hump/class'
 require 'Player'
 require 'Ball'
 require 'Map'
+require 'Block'
+
 --Setup Constants
 local WINDOW_WIDTH = 1280
 local WINDOW_HEIGHT = 720
+
+
 
 
 function love.load()
@@ -28,7 +32,7 @@ function love.load()
     -------------------------------------
 
     --Shaders
-    effect = moonshine(moonshine.effects.glow)
+    glow = moonshine(moonshine.effects.glow)
     --------------------------------
 
     --Gravity & Physics
@@ -38,8 +42,8 @@ function love.load()
     map = Map(WINDOW_WIDTH, WINDOW_HEIGHT)
     
     -----Players
-    p1 = Player(100, WINDOW_HEIGHT / 2 - 25, 50)
-    p2 = Player(WINDOW_WIDTH - 150, WINDOW_HEIGHT / 2 - 25 , 50)
+    p1 = Player(100, WINDOW_HEIGHT / 2 - 25, 50, 1)
+    p2 = Player(WINDOW_WIDTH - 150, WINDOW_HEIGHT / 2 - 25 , 50, 2)
     ball = Ball(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 20)
     
 end
@@ -64,11 +68,12 @@ end
 function love.draw()
     love.graphics.clear(34 / 255, 40 / 255, 49 / 255, 255 / 255)
     
-    effect(function()
+    glow(function()
         p1:render()
         ball:render()
         p2:render()
+        map:render()
     end)
+
     
-    world:draw(20)
 end

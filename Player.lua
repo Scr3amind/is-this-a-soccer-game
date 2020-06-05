@@ -1,11 +1,17 @@
 Player = Class {}
 
-function Player:init(x, y, size)
+function Player:init(x, y, size, playerNo)
     self.x = x
     self.y = y
     self.velocity = 30000
     self.size = size
     
+    self.color = {255/255, 255/255, 255/255, 1}
+    if playerNo == 1 then
+        self.color = {0/255, 255/255, 255/255, 1}
+    elseif playerNo == 2 then
+        self.color = {255/255, 255/255, 0/255, 1}
+    end
 
     self.box = world:newRectangleCollider(self.x, self.y, self.size, self.size)
     self.box:setRestitution(0.5)
@@ -33,7 +39,7 @@ function Player:controller(right, left, up, down, dt)
 end
 
 function Player:render()
-    love.graphics.setColor(0/255, 255/255, 255/255, 1)
+    love.graphics.setColor(self.color)
     love.graphics.polygon("fill", self.box.body:getWorldPoints(self.box.shape:getPoints()))
     love.graphics.setColor(255/255, 255/255 , 0/255, 1)
 end
