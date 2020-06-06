@@ -6,9 +6,11 @@ function Ball:init(x, y, size)
     self.size = size
 
     self.circle = world:newCircleCollider(self.x, self.y, self.size)
-    self.circle:setRestitution(0.8)
+    self.circle:setRestitution(1.0)
     self.circle:applyAngularImpulse(5000)
 end
+
+
 
 function Ball:render()
     love.graphics.setColor(255/255, 255/255 , 255/255, 1)

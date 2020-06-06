@@ -3,7 +3,7 @@ Player = Class {}
 function Player:init(x, y, size, playerNo)
     self.x = x
     self.y = y
-    self.velocity = 30000
+    self.velocity = 50000
     self.size = size
     
     self.color = {255/255, 255/255, 255/255, 1}
@@ -24,16 +24,15 @@ end
 function Player:controller(right, left, up, down, dt)
     if love.keyboard.isDown(right) then
         self.box:setLinearVelocity( self.velocity * dt, 0 )
-        --box:applyForce(2000, 0)
     elseif love.keyboard.isDown(left) then
         self.box:setLinearVelocity( -self.velocity * dt, 0 )
-        --box:applyForce(-2000, 0)
     elseif love.keyboard.isDown(up) then
         self.box:setLinearVelocity( 0, -self.velocity * dt )
-        --box:applyForce(0, -2000)
     elseif love.keyboard.isDown(down) then
         self.box:setLinearVelocity( 0, self.velocity * dt)
-        --box:applyForce(0, 2000)
+
+    else 
+        self.box:setLinearVelocity( 0, 0)
     end
 
 end

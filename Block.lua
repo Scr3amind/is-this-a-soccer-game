@@ -12,8 +12,9 @@ function Block:init(x, y, width, height)
 end
 
 
+
 function Block:render()
-    love.graphics.setColor(255/255, 255/255 , 255/255, 1)
-    love.graphics.polygon("line", self.collider.body:getWorldPoints(self.collider.shape:getPoints()))
+    love.graphics.setColor(255/255, 255/255 , 255/255, 1/2)
+    love.graphics.polygon("fill", self.collider.body:getWorldPoints(self.collider.shape:getPoints()))
     love.graphics.setColor(255/255, 255/255 , 255/255, 1)
 end
