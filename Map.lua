@@ -15,8 +15,8 @@ function Map:init(width, height)
     wall_right_up = Block(width - 50, 0, 50, height)
     wall_right_down = Block(width - 50, height * 2 / 3, 50, height)
     
-    left_limit = Block(-80 , height / 3, 50, height / 3)
-    right_limit = Block(width + 30 , height / 3, 50, height / 3)
+    left_limit = Block(-80 , 0, 50, height)
+    right_limit = Block(width + 30 , 0, 50, height)
     
     self.height1 = wall_left_up.collider:getY()
     self.height2 = wall_left_down.collider:getY()
