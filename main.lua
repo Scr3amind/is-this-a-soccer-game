@@ -58,8 +58,8 @@ function love.load()
     map = Map(WINDOW_WIDTH, WINDOW_HEIGHT)
     
     -----Players
-    p1 = Player(100, WINDOW_HEIGHT / 2 - 25, 50, 1)
-    p2 = Player(WINDOW_WIDTH - 150, WINDOW_HEIGHT / 2 - 25 , 50, 2)
+    p1 = Player(100, WINDOW_HEIGHT / 2 - 25, 25, 1)
+    p2 = Player(WINDOW_WIDTH - 150, WINDOW_HEIGHT / 2 - 25 , 25, 2)
     ball = Ball(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 20)
 
     ---Font---
@@ -110,8 +110,8 @@ function love.update(dt)
     world:update(dt)
     --Players Input--
     if gameState == 'Playing' then
-     p1:controller('d', 'a', 'w', 's', dt)
-     p2:controller('right', 'left', 'up', 'down', dt)
+     p1:controller('d', 'a', 'w', 's', 'space', dt)
+     p2:controller('right', 'left', 'up', 'down', 'rshift', dt)
     end
     --Map animation--
     map:update(timer, (p1Score + p2Score) / (WIN_SCORE - 1))
