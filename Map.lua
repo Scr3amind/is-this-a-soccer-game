@@ -15,9 +15,9 @@ function Map:init(width, height)
     self.wall_right_up = Block(width - self.blocks_width, 0, self.blocks_width, height)
     self.wall_right_down = Block(width - self.blocks_width, height * 2 / 3, self.blocks_width, height)
     
-    self.left_limit = Block(-80 , 0, 50, height)
+    self.left_limit = Block(-50 , 0, 50, height)
     self.left_limit.collider:setCollisionClass('Limit')
-    self.right_limit = Block(width + 30 , 0, 50, height)
+    self.right_limit = Block(width , 0, 50, height)
     self.right_limit.collider:setCollisionClass('Limit')
     
 

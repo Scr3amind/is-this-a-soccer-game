@@ -4,7 +4,7 @@ function Player:init(x, y, size, playerNo)
     self.x = x
     self.y = y
     self.velocity = 50000
-    self.angularVelocity = 15
+    self.angularVelocity = 30
     self.size = size
     
     self.color = {255/255, 255/255, 255/255, 1}
@@ -32,13 +32,13 @@ function Player:controller(right, left, up, down, spin, dt)
         self.box:setLinearVelocity( 0, -self.velocity * dt )
     elseif love.keyboard.isDown(down) then
         self.box:setLinearVelocity( 0, self.velocity * dt)
-    elseif love.keyboard.isDown(spin) then
-        self.box:setAngularVelocity(self.angularVelocity)
 
     else 
         self.box:setLinearVelocity( 0, 0)
     end
-
+    if love.keyboard.isDown(spin) then
+        self.box:setAngularVelocity(self.angularVelocity)
+    end
 end
 
 function Player:render()
