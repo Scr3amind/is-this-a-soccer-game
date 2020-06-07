@@ -16,16 +16,17 @@ function Map:init(width, height)
     self.wall_right_down = Block(width - self.blocks_width, height * 2 / 3, self.blocks_width, height)
     
     self.left_limit = Block(-80 , 0, 50, height)
+    self.left_limit.collider:setCollisionClass('Limit')
     self.right_limit = Block(width + 30 , 0, 50, height)
+    self.right_limit.collider:setCollisionClass('Limit')
     
 
     self.height1 = self.wall_left_up.collider:getY()
     self.height2 = self.wall_left_down.collider:getY()
 end
 
-function Map:update(dt)
-    self.timer = self.timer + dt
-    self.offsetY = math.sin(self.timer)
+function Map:update(timer,factor)
+    self.offsetY = math.sin(timer*factor)
     self.wall_left_up.collider:setY(self.height1 + self.offsetY*150)
     self.wall_left_down.collider:setY(self.height2 + self.offsetY*150)
     self.wall_right_up.collider:setY(self.height1 + 1 - self.offsetY*150)

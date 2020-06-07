@@ -8,6 +8,7 @@ function Ball:init(x, y, size)
     self.circle = world:newCircleCollider(self.x, self.y, self.size)
     self.circle:setRestitution(1.0)
     self.circle:applyAngularImpulse(5000)
+    self.circle:setCollisionClass('Ball')
 end
 
 
