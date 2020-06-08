@@ -59,7 +59,7 @@ function love.load()
     
     -----Players
     p1 = Player(100, WINDOW_HEIGHT / 2 - 25, 25, 1)
-    p2 = Player(WINDOW_WIDTH - 150, WINDOW_HEIGHT / 2 - 25 , 25, 2)
+    p2 = Player(WINDOW_WIDTH - 125, WINDOW_HEIGHT / 2 - 25 , 25, 2)
     ball = Ball(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 20)
 
     ---Font---
@@ -68,6 +68,23 @@ function love.load()
 
     --UI--
     UIdrawer = UIHelper(WINDOW_WIDTH, WINDOW_HEIGHT)
+
+    --Music
+    love.audio.setEffect('myEffect', {
+        type = 'reverb',
+        gain = 1.0,
+
+    })
+
+    music = love.audio.newSource('music/synth-loop-1.mp3', 'static')
+    music:setLooping(true)
+    music:play()
+
+    sounds = {
+        ['goal'] = love.audio.newSource('music/goal.wav', 'static'),
+        ['select'] = love.audio.newSource('music/select.wav', 'static')
+    }
+
 end
 
 function resetPositions()
@@ -83,6 +100,7 @@ function resetPositions()
 end
 
 function increaseScore(playerNumber, points)
+    sounds['goal']:play()
     resetPositions()
     
     if playerNumber == 1 then
@@ -95,9 +113,11 @@ end
 
 function finishGame(playerNumber)
     winner = playerNumber
+    music:setEffect('myEffect')
     gameState = 'Finished'
     p1Score = 0
     p2Score = 0
+    timer = 0
 end
 
 
@@ -140,7 +160,12 @@ function love.keypressed(key)
     end
 
     if key == 'return' then
-        gameState = 'Playing'
+        if gameState ~= 'Playing' then
+            --Start Game
+            sounds['select']:play()
+            music:setEffect('myEffect', false)
+            gameState = 'Playing'
+        end
     end
     
 end

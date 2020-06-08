@@ -1,8 +1,6 @@
 Player = Class {}
 
 function Player:init(x, y, size, playerNo)
-    self.x = x
-    self.y = y
     self.velocity = 50000
     self.angularVelocity = 20
     self.size = size
@@ -14,9 +12,12 @@ function Player:init(x, y, size, playerNo)
         self.color = {255/255, 255/255, 0/255, 1}
     end
 
-    self.box = world:newRectangleCollider(self.x, self.y, self.size, self.size * 4)
+    self.box = world:newRectangleCollider(x, y, self.size, self.size * 4)
     self.box:setRestitution(0.5)
     self.box:applyAngularImpulse(5000)
+
+    self.x = self.box:getX()
+    self.y = self.box:getY()
 
 
 

@@ -28,7 +28,7 @@ end
 
 function UIHelper:drawWinScreen(player, font, timer)
     love.graphics.setFont(font)
-    love.graphics.printf("Winner is Player " .. tostring(player), 0 , self.height / 4, self.width,  'center')
+    love.graphics.printf("Player " .. tostring(player) .. " Wins!", 0 , self.height / 4, self.width,  'center')
     blinkingAlpha = (math.sin(timer*3) + 1) / 2
     love.graphics.setColor(255/255, 255/255 , 255/255, blinkingAlpha)
     love.graphics.printf("Press Enter to Play Again", 0 , self.height *  3/4, self.width,  'center')
