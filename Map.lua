@@ -25,12 +25,12 @@ function Map:init(width, height)
     self.height2 = self.wall_left_down.collider:getY()
 end
 
-function Map:update(timer,factor)
-    self.offsetY = math.sin(timer*factor)
-    self.wall_left_up.collider:setY(self.height1 + self.offsetY*150)
-    self.wall_left_down.collider:setY(self.height2 + self.offsetY*150)
-    self.wall_right_up.collider:setY(self.height1 + 1 - self.offsetY*150)
-    self.wall_right_down.collider:setY(self.height2 + 1 - self.offsetY*150)
+function Map:update(timer)
+    self.offsetY = math.sin(timer) * math.min(200,timer*4)
+    self.wall_left_up.collider:setY(self.height1 + self.offsetY)
+    self.wall_left_down.collider:setY(self.height2 + self.offsetY)
+    self.wall_right_up.collider:setY(self.height1 + 1 - self.offsetY)
+    self.wall_right_down.collider:setY(self.height2 + 1 - self.offsetY)
     
    
 end

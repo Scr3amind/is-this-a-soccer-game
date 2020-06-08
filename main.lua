@@ -83,7 +83,6 @@ function resetPositions()
 end
 
 function increaseScore(playerNumber, points)
-    
     resetPositions()
     
     if playerNumber == 1 then
@@ -110,11 +109,11 @@ function love.update(dt)
     world:update(dt)
     --Players Input--
     if gameState == 'Playing' then
-     p1:controller('d', 'a', 'w', 's', 'space', dt)
-     p2:controller('right', 'left', 'up', 'down', 'rshift', dt)
+     p1:controller('d', 'a', 'w', 's', dt)
+     p2:controller('right', 'left', 'up', 'down', dt)
     end
     --Map animation--
-    map:update(timer, (p1Score + p2Score) / (WIN_SCORE - 1))
+    map:update(timer)
 
 
     --Scoring---

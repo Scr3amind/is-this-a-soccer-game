@@ -4,7 +4,7 @@ function Player:init(x, y, size, playerNo)
     self.x = x
     self.y = y
     self.velocity = 50000
-    self.angularVelocity = 30
+    self.angularVelocity = 20
     self.size = size
     
     self.color = {255/255, 255/255, 255/255, 1}
@@ -12,7 +12,6 @@ function Player:init(x, y, size, playerNo)
         self.color = {0/255, 255/255, 255/255, 1}
     elseif playerNo == 2 then
         self.color = {255/255, 255/255, 0/255, 1}
-        self.angularVelocity = self.angularVelocity * -1
     end
 
     self.box = world:newRectangleCollider(self.x, self.y, self.size, self.size * 4)
@@ -23,11 +22,13 @@ function Player:init(x, y, size, playerNo)
 
 end
 
-function Player:controller(right, left, up, down, spin, dt)
+function Player:controller(right, left, up, down, dt)
     if love.keyboard.isDown(right) then
         self.box:setLinearVelocity( self.velocity * dt, 0 )
+        self.box:setAngularVelocity(self.angularVelocity)
     elseif love.keyboard.isDown(left) then
         self.box:setLinearVelocity( -self.velocity * dt, 0 )
+        self.box:setAngularVelocity(-self.angularVelocity)
     elseif love.keyboard.isDown(up) then
         self.box:setLinearVelocity( 0, -self.velocity * dt )
     elseif love.keyboard.isDown(down) then
@@ -35,10 +36,9 @@ function Player:controller(right, left, up, down, spin, dt)
 
     else 
         self.box:setLinearVelocity( 0, 0)
+
     end
-    if love.keyboard.isDown(spin) then
-        self.box:setAngularVelocity(self.angularVelocity)
-    end
+
 end
 
 function Player:render()
