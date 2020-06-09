@@ -70,12 +70,14 @@ function love.load()
     UIdrawer = UIHelper(WINDOW_WIDTH, WINDOW_HEIGHT)
 
     --Music
+
+        --Effect for finished game
     love.audio.setEffect('myEffect', {
         type = 'reverb',
         gain = 1.0,
 
     })
-
+        --Sounds and Background
     music = love.audio.newSource('music/synth-loop-1.mp3', 'static')
     music:setLooping(true)
     music:play()
@@ -134,6 +136,7 @@ function love.update(dt)
     end
     --Map animation--
     map:update(timer)
+    ball:update(dt)
 
 
     --Scoring---
@@ -182,6 +185,7 @@ function love.draw()
         end
     end)
     
+
     --Font Drawing--
     if gameState == 'StartScreen' then
         UIdrawer:drawStartScreen(gameFont, timer)
