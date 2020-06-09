@@ -18,6 +18,11 @@ function Ball:init(x, y, size)
     self.pSystem:setEmissionArea('normal',3 , 3)
     self.pSystem:setSpeed(250, 500)
     self.pSystem:setDirection(0)
+    self.pSystem:setColors(1, 1, 1, 1,
+                            178/255, 252/255, 255/255, 1.0,
+                            143/255, 113/255, 255/255, 1.0)
+
+    self.pSystem:setSizes(1.0, 0.8, 0.5)
 end
 
 function Ball:update(dt)
@@ -25,8 +30,7 @@ function Ball:update(dt)
     self.angle = math.atan2(self.angx, self.angy)
     self.pSystem:setDirection(-self.angle - (3.1416 / 2))
     --- Particles ---
-    self.pSystem:setColors(1,1,1,1,0.5,0.5,0.5,0.5,0.25,0.25,0.25,0.25)
-    self.pSystem:setSizes(1.0, 0.5, 0.1)
+
     self.pSystem:update(dt)
 
 end
