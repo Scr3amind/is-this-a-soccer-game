@@ -45,7 +45,9 @@ function love.load()
     -------------------------------------
 
     --Shaders
-    glow = moonshine(moonshine.effects.glow)
+    effects = moonshine(moonshine.effects.glow).chain(moonshine.effects.crt)
+    effects.crt.x = 1.02
+    effects.crt.y = 1.02
     --------------------------------
 
     --Gravity & Physics
@@ -174,9 +176,9 @@ function love.keypressed(key)
 end
 
 function love.draw()
-    love.graphics.clear(34 / 255, 40 / 255, 49 / 255, 255 / 255)
+    love.graphics.clear(17 / 255, 20 / 255, 25 / 255, 255 / 255)
     
-    glow(function()
+    effects(function()
         p1:render()
         ball:render()
         p2:render()
